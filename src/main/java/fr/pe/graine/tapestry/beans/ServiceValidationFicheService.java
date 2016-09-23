@@ -5,28 +5,23 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import fr.pe.graine.tapestry.entrepot.EntrepotReglesDeGestion;
+
 public class ServiceValidationFicheService {
     
-    private Erreur e;
-
-    public List<Erreur> validerTest(FicheService ficheService) {
+    public List<Erreur> valider(FicheService ficheService) {
         List<Erreur> listeErreurs = new ArrayList<Erreur>();
-        String nomService = ficheService.getNomService();
-        String nomEditeur = ficheService.getNomEditeur();
-        String typeService = ficheService.getTypeService();
+        this.verifierAttributRenseigne(ficheService.getNomService(), EntrepotReglesDeGestion.CODE_ERREUR_NOM_SERVICE_ABSENT,
+                        EntrepotReglesDeGestion.LIBELLE_ERREUR_NOM_SERVICE_ABSENT, listeErreurs);
+        this.verifierAttributRenseigne(ficheService.getNomEditeur(), EntrepotReglesDeGestion.CODE_ERREUR_NOM_EDITEUR_ABSENT,
+                        EntrepotReglesDeGestion.LIBELLE_ERREUR_NOM_EDITEUR_ABSENT, listeErreurs);
         
-        if (StringUtils.isBlank(nomService)) {
-            listeErreurs.add(this.e);
-        }
-
-        if (StringUtils.isBlank(nomEditeur)) {
-            listeErreurs.add(this.e);
-        }
-
-        if (StringUtils.isBlank(typeService)) {
-            listeErreurs.add(this.e);
-        }
-
         return listeErreurs;
+    }
+    
+    private void verifierAttributRenseigne(String attributTeste, String codeErreur, String libelleErreur, List<Erreur> listeErreurs) {
+        if (StringUtils.isBlank(attributTeste)) {
+            listeErreurs.add(new Erreur(codeErreur, libelleErreur));
+        }
     }
 }
