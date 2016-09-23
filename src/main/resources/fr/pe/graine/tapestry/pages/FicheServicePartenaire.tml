@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+
+<head>
+<title>Saisie d'une fiche service partenaire</title>
+</head>
+
+<body>
+	<div class="entete">
+		<h2>FICHE SERVICE PARTENAIRE </h2>
+		<img src="${logoEmploiStore}" />
+	</div>
+	<t:FicheServicePartenaireContenuDuService />
+	<br/>
+	<div class="caracteristiquesDuService">
+		<table style="border-collapse: collapse; border: 2px solid black">
+			<tr>
+				<th colspan="3" style="border: 2px solid black">CARACTERISTIQUE DU SERVICE</th>
+			</tr>
+			<tr>
+				<td colspan="2" style="border: 1px solid black">Type de service:</td>
+				<td style="border: 1px solid black">
+					<SELECT name="typeDeService" size="1">
+						<OPTION></OPTION>
+						<OPTION>Simulateur</OPTION>
+						<OPTION>Mooc</OPTION>
+						<OPTION>Service d'information</OPTION>
+						<OPTION>Quizz</OPTION>
+						<OPTION>Réseau social</OPTION>
+						<OPTION>Salon virtuel/forum</OPTION>
+						<OPTION>Création d'outils</OPTION>
+						<OPTION>Moteur de recherche</OPTION>
+					</SELECT>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="border: 1px solid black">Nature du service:</td>
+				<td style="border: 1px solid black">
+					<SELECT name="natureDuService" size="1">
+						<OPTION></OPTION>
+						<OPTION>Web</OPTION>
+						<OPTION>Applications</OPTION>
+						<OPTION>Web et application</OPTION>
+					</SELECT>
+				</td>
+			</tr>
+			<tr>
+				<td>Service régionalisé ?:</td>
+				<td><input type="radio" name="ouiServicePersonnalisé" value="non" id="non" />Oui &#47; <input type="radio" name="nonServicePersonnalisé" value="non" id="non" />Non</td>
+				<td style="border: 1px solid black">
+					<SELECT name="typeDeService" size="1">
+						<OPTION></OPTION>
+						<OPTION>Auvergne Rhône Alpes</OPTION>
+						<OPTION>Alsace Lorraine Champagne-Ardennes</OPTION>
+						<OPTION>Aquitaine Limousin Poitou-Charentes</OPTION>
+						<OPTION>Bourgogne Franche-Comté</OPTION>
+						<OPTION>Bretagne</OPTION>
+						<OPTION>Centre</OPTION>
+						<OPTION>Corse</OPTION>
+						<OPTION>Ile de France</OPTION>
+					</SELECT>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="border: 1px solid black">Secteurs d'activité (jusqu'à 4 max)</td>
+				<td style="border: 1px solid black">
+					<SELECT name="typeDeService" size="1">
+						<OPTION></OPTION>
+						<OPTION>Agriculture</OPTION>
+						<OPTION>Armée, sécurité</OPTION>
+						<OPTION>Art, artisanat</OPTION>
+						<OPTION>Assistanat, secrétaria</OPTION>
+						<OPTION>Banque, assurance, immobilier, finance</OPTION>
+						<OPTION>Commerce, vente, marketing, achats</OPTION>
+						<OPTION>Communication, médias</OPTION>
+						<OPTION>Construction, bâtiment et travaux publics</OPTION>
+					</SELECT>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="border: 1px solid black">Mots clés (jusqu'à 5 max):</td>
+				<td style="border: 1px solid black"><input type="text" name="motsCles" /></td>
+			</tr>
+			<tr>
+				<td colspan="3">STORE APPLICATION: Saisir au moins un store application ci dessous</td>
+			</tr>
+		</table>
+	</div>
+	<br/>
+	<div class="modesAccesElementsTechniques">
+		<table style="border-collapse: collapse; border: 2px solid black">
+			<tr>
+				<th colspan="2" style="border: 2px solid black">MODES D'ACCES / ELEMENTS TECHNIQUES</th>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Service en accès autentifié ?:</td>
+				<td style="border: 1px solid black"><input type="radio" name="ouiServiceEnAccesAutentifie" value="non" id="non" />Oui &#47; <input type="radio" name="nonServiceEnAccesAutentifie" value="non" id="non" />Non</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Utilisation de données de l'Emploi Store DEV<br/>(interface de mise à disposition des données) ?:</td>
+				<td style="border: 1px solid black"><input type="radio" name="ouiUtilisationDeDonnées" value="non" id="non" />Oui &#47; <input type="radio" name="nonUtilisationDeDonnées" value="non" id="non" />Non</td>
+			</tr>
+		</table>
+	</div>
+	<br/>
+	<div class="contacts">
+		<table style="border-collapse: collapse; border: 2px solid black">
+			<tr>
+				<th colspan="2" style="border: 2px solid black">CONTACTS</th>
+			</tr>
+			<tr>
+				<td colspan="2"><strong>Contact pour le référencement:</strong></td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Nom:</td>
+				<td style="border: 1px solid black"><input type="text" name="nomReferencement" /></td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Téléphone:</td>
+				<td style="border: 1px solid black"><input type="text" name="telephoneReferencement" /></td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Mail:</td>
+				<td style="border: 1px solid black"><input type="text" name="mailReferencement" /></td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Fonction:</td>
+				<td style="border: 1px solid black"><input type="text" name="fonctionReferencement" /></td>
+			</tr>
+			<tr>
+				<td><strong>Contact technique: </strong></td>
+				<td><strong><input type="checkbox" name="contactTechnique" value="Oui"> Même contact que pour le référencement</input></strong></td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Nom:</td>
+				<td style="border: 1px solid black"><input type="text" name="nomTechnique" /></td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Téléphone:</td>
+				<td style="border: 1px solid black"><input type="text" name="telephoneTechnique" /></td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Mail:</td>
+				<td style="border: 1px solid black"><input type="text" name="mailTechnique" /></td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Fonction:</td>
+				<td style="border: 1px solid black"><input type="text" name="fonctionTechnique" /></td>
+			</tr>
+		</table>
+	</div>
+	<br/>
+	<div class="supportsGraphiques">
+		<table style="border-collapse: collapse; border: 2px solid black">
+			<tr>
+				<th colspan="3" style="border: 2px solid black">SUPPORTS GRAPHIQUES</th>
+			</tr>
+			<tr>
+				<td colspan="2" style="border: 1px solid black">Logo: <input type="submit" value="Ajouter le logo"/><input type="submit" value="Supprimer"/></td>
+				<td style="border: 1px solid black"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><strong>SUPPORTS VISUELS (PAR ORDRE D'AFFICHAGE)</strong></td>
+				<td>Pour un lien vers une ressource externe(Vidéo), renseigner l'URL. Pour les images support, un format png ou jpg de 175x400 pixels est préconisé.</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="border: 1px solid black">Visuel 1: <input type="submit" value="Ajouter support n°1"/><input type="submit" value="Supprimer"/></td>
+				<td style="border: 1px solid black"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="border: 1px solid black">Visuel 2: <input type="submit" value="Ajouter support n°2"/><input type="submit" value="Supprimer"/></td>
+				<td style="border: 1px solid black"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="border: 1px solid black">Visuel 3: <input type="submit" value="Ajouter support n°3"/><input type="submit" value="Supprimer"/></td>
+				<td style="border: 1px solid black"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="border: 1px solid black">Visuel 4: <input type="submit" value="Ajouter support n°4"/><input type="submit" value="Supprimer"/></td>
+				<td style="border: 1px solid black"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="border: 1px solid black">Visuel 5: <input type="submit" value="Ajouter support n°5"/><input type="submit" value="Supprimer"/></td>
+				<td style="border: 1px solid black"></td>
+			</tr>
+		</table>
+	</div>
+	<br/>
+	<div class="piedDePage">
+		<input type="submit" value="ETAPE 1 Générer la fiche service"/>
+		<input type="submit" value="ETAPE 2 Envoyer la demande de référencement"/>
+		<input type="submit" value="Nouvelle fiche service"/>
+	</div>
+
+</body>
+
+</html>

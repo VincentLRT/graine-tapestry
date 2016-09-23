@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <tapestry>
+        <file-check-interval>1 h</file-check-interval>
+        <clustered-sessions>false</clustered-sessions>
+        <thread-pool>
+            <core-pool-size>10</core-pool-size>
+            <max-pool-size>100</max-pool-size>
+        </thread-pool>
+    </tapestry>
+    <annuaire>
+        <temps-execution-max>10 s</temps-execution-max>
+        <nombre-tentatives>3</nombre-tentatives>
+        <taille-pool>5</taille-pool>
+    </annuaire>
+    <acropole>
+        <!-- avant integration-acropole 4.1.0 -->
+        <limites>
+            <defaut>
+                <nombre>50</nombre>
+                <wait>500 ms</wait>
+                <timeout>5 s</timeout>
+            </defaut>
+        </limites>
+        <!-- après integration-acropole 4.1.0 -->
+        <limite-nombre-appels-synchrone>50</limite-nombre-appels-synchrone>
+        <limite-duree-appels-synchrone>500 ms</limite-duree-appels-synchrone>
+    </acropole>
+    <sdr>
+        <ws>
+            <connexion-max-par-host>100</connexion-max-par-host>
+            <connexion-total-max>1000</connexion-total-max>
+            <timeout>1 s</timeout>
+        </ws>
+    </sdr>
+</configuration>

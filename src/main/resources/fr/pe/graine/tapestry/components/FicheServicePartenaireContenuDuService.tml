@@ -1,0 +1,25 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"  xmlns:p="tapestry:parameter">
+	<div class="contenuDuService">
+		<table style="border-collapse: collapse; border: 2px solid black">
+			<tr>
+				<th colspan="2" style="border: 2px solid black">CONTENU DU SERVICE</th>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Nom du service:</td>
+				<td style="border: 1px solid black"><input type="text" name="nomDuService" /></td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Nom de l'éditeur / Entreprise:</td>
+				<td style="border: 1px solid black"><input type="text" name="nomEditeurEntreprise" /></td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Accroche</td>
+				<td style="border: 1px solid black"><input type="text" name="accroche" /></td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">Description</td>
+				<td style="border: 1px solid black"><input type="text" name="description" /></td>
+			</tr>
+		</table>
+	</div>
+</t:container>

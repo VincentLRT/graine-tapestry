@@ -2,10 +2,10 @@ package fr.pe.graine.tapestry.beans;
 
 public class Personne {
 
-    private String nom;
-    private String prenom;
-    private String dateNaissance;
-    private Adresse adresse;
+    protected String nom;
+    protected String prenom;
+    protected String dateNaissance;
+    protected Adresse adresse;
     
     public void setNom(String nom) {
         this.nom = nom;
@@ -25,6 +25,18 @@ public class Personne {
 
     public Adresse getAdresse() {
         return this.adresse;
+    }
+    
+    public String getNom() {
+        return this.nom;
+    }
+    
+    public String getPrenom() {
+        return this.prenom;
+    }
+    
+    public String getDateNaissance() {
+        return this.dateNaissance;
     }
 
 }
