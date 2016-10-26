@@ -1,4 +1,4 @@
-package fr.pe.graine.tapestry.beans;
+package fr.pe.graine.tapestry.services;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
+import fr.pe.graine.tapestry.beans.Erreur;
+import fr.pe.graine.tapestry.beans.FicheService;
 import fr.pe.graine.tapestry.entrepot.EntrepotReglesDeGestion;
 
 public class ServiceValidationFicheService {

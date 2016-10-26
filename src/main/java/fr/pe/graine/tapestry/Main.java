@@ -15,7 +15,7 @@ import fr.pe.graine.tapestry.beans.EmployeFluent;
 import fr.pe.graine.tapestry.beans.FicheService;
 import fr.pe.graine.tapestry.beans.FicheServiceAutoValidee;
 import fr.pe.graine.tapestry.beans.PersonneFluent;
-import fr.pe.graine.tapestry.beans.ServiceValidationFicheService;
+import fr.pe.graine.tapestry.services.ServiceValidationFicheService;
 
 public class Main {
 

@@ -11,8 +11,8 @@ import org.junit.Test;
 
 import fr.pe.graine.tapestry.beans.Erreur;
 import fr.pe.graine.tapestry.beans.FicheService;
-import fr.pe.graine.tapestry.beans.ServiceValidationFicheService;
 import fr.pe.graine.tapestry.entrepot.EntrepotReglesDeGestion;
+import fr.pe.graine.tapestry.services.ServiceValidationFicheService;
 
 public class ServiceValidationFicheServiceTest {
 

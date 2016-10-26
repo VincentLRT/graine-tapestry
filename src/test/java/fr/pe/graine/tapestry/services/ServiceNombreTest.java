@@ -1,4 +1,4 @@
-package fr.pe.graine.tapestry;
+package fr.pe.graine.tapestry.services;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -6,6 +6,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import fr.pe.graine.tapestry.ConstantesNombre;
+import fr.pe.graine.tapestry.services.ServiceNombre;
 
 public class ServiceNombreTest {
     

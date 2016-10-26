@@ -1,4 +1,6 @@
-package fr.pe.graine.tapestry;
+package fr.pe.graine.tapestry.services;
+
+import fr.pe.graine.tapestry.ConstantesNombre;
 
 public class ServiceNombre {
     
