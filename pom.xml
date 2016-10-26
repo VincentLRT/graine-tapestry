@@ -8,7 +8,6 @@
 
 	<properties>
 		<tapestry-module-package>fr.pe.graine.tapestry</tapestry-module-package>
-		<tapestry-module-name>ModuleGraineTapestry</tapestry-module-name>
 	
 		<tapestry.version>4.0.14</tapestry.version>
 		<junit.version>4.11</junit.version>
