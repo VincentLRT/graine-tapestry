@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+	<title>Interface de saisie d'une fiche service.</title>
+	<link href="${bootstrap}" rel="stylesheet" />
+    <link href="${animate}" rel="stylesheet" />
+</head>
+
+<body class="pattern-portofolio bd">
+
+<div class="container">
+	<div class="animated bounceInDown">
+		<p><img src="${logoEmploiStore}"></img></p>	
+	</div>
+	
+	<nav class="navbar navbar-inverse animated fadeIn">
+	    <div class="container-fluid">
+	        <div class="navbar-header">
+	            <a class="navbar-brand" href="http://localhost:8080/graine-tapestry/saisieficheservice#">Backoffice de saisie des fiches service</a></div>
+	        <div id="bs-example-navbar-collapse-9" class="collapse navbar-collapse">
+	            <ul class="nav navbar-nav">
+	                <li class="active"><a href="http://localhost:8080/graine-tapestry/saisieficheservice#">Saisir une fiche service</a></li>
+	            </ul>
+	        </div>
+	    </div>
+	</nav>
+	
+	<div class="panel panel-default animated bounceInUp">
+		<div class="panel-heading">Saisie d'une fiche service</div>
+		<div class="panel-body">
+ 		    <t:form	t:id="formulaireFicheServiceEnSaisie">    
+ 		    <t:errors/>  
+				<div class="form-group">
+					<label for="nom">Nom du service : </label>
+					<t:textfield class="form-control" t:id="nomService" t:value="ficheServiceBrouillon.nomService" placeholder="Nom du service"/> 
+				</div>
+				<div class="form-group">
+					<label for="typeService">Type service : </label>
+					<t:textfield class="form-control" t:id="typeService" t:value="ficheServiceBrouillon.typeDeService" placeholder="Type du service"/> 
+				</div>
+				<div class="form-group">
+					<label for="nomEditeur">Nom éditeur : </label>
+					<t:textfield class="form-control" t:id="nomEditeur" t:value="ficheServiceBrouillon.nomEditeur" placeholder="Nom de l'éditeur"/>
+				</div>
+		        <div class="form-group">
+					<label for="mailEditeur">Mail éditeur : </label>
+					<t:textfield class="form-control" t:id="mailEditeur" t:value="ficheServiceBrouillon.mailEditeur" placeholder="Mail de l'éditeur"/> 
+				</div>
+				<hr />
+				<div class="form-group">
+				    <label for="dateCreation">Date de création : </label>
+				    <div>
+				        <p class="form-control-static">${dateDuJour}</p>
+				    </div>
+				</div>	
+  				<t:submit class="btn btn-primary" t:id="validerFicheService" type="submit" value="valider" />
+  			</t:form>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

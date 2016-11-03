@@ -7,7 +7,7 @@ public class FicheService {
     private String nomService;
     private String nomEditeur;
     private String typeDeService;
-    private String email;
+    private String mailEditeur;
     private Date dateDeCreation;
 
     public String getNomService() {
@@ -34,12 +34,12 @@ public class FicheService {
         this.typeDeService = typeDeService;
     }
     
-    public String getEmail() {
-        return this.email;
+    public String getMailEditeur() {
+        return this.mailEditeur;
     }
     
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMailEditeur(String mailEditeur) {
+        this.mailEditeur = mailEditeur;
     }
     
     public Date getDateDeCreation() {
