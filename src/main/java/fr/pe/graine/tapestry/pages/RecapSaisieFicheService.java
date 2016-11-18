@@ -12,38 +12,38 @@ import fr.pe.graine.tapestry.beans.ContexteSaisieFicheDeService;
 import fr.pe.graine.tapestry.entrepot.ConstantesGlobales;
 
 public class RecapSaisieFicheService {
-
+    
     private static final String DATE_PATTERN = "dd/MM/yyyy";
     private SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
-    
+
     @Inject
     @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/images/logo-emploi-store.png")
     @Property
     private Asset logoEmploiStore;
-
+    
     @Inject
     @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/css/bootstrap.css")
     @Property
     private Asset bootstrap;
-
+    
     @Inject
     @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/css/animate.css")
     @Property
     private Asset animate;
-
+    
     @SessionState
     private ContexteSaisieFicheDeService contexteSaisieFicheService;
-
+    
     public ContexteSaisieFicheDeService getContexteSaisieFicheService() {
         return this.contexteSaisieFicheService;
     }
-
+    
     public void setContexteSaisieFicheService(ContexteSaisieFicheDeService contexteSaisieFicheService) {
         this.contexteSaisieFicheService = contexteSaisieFicheService;
     }
-
+    
     public String getDateDeCreation() {
         return this.sdf.format(this.contexteSaisieFicheService.getFicheServiceValidee().getDateDeCreation().getTime());
     }
-
+    
 }

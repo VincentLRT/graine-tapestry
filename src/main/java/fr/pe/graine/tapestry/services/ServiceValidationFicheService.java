@@ -19,10 +19,10 @@ public class ServiceValidationFicheService {
                         EntrepotReglesDeGestion.LIBELLE_ERREUR_NOM_SERVICE_ABSENT, listeErreurs);
         this.verifierAttributRenseigne(ficheService.getNomEditeur(), EntrepotReglesDeGestion.CODE_ERREUR_NOM_EDITEUR_ABSENT,
                         EntrepotReglesDeGestion.LIBELLE_ERREUR_NOM_EDITEUR_ABSENT, listeErreurs);
-        this.verifierAttributRenseigne(ficheService.getTypeDeService(), EntrepotReglesDeGestion.CODE_ERREUR_TYPE_DE_SERVICE_ABSENT,
-                        EntrepotReglesDeGestion.LIBELLE_ERREUR_TYPE_DE_SERVICE_ABSENT, listeErreurs);
+        // this.verifierAttributRenseigne(ficheService.getTypeDeService(), EntrepotReglesDeGestion.CODE_ERREUR_TYPE_DE_SERVICE_ABSENT,
+        // EntrepotReglesDeGestion.LIBELLE_ERREUR_TYPE_DE_SERVICE_ABSENT, listeErreurs);
         this.verifierAdresseFormatEmail(ficheService.getMailEditeur(), EntrepotReglesDeGestion.CODE_ERREUR_EMAIL_NON_VALIDE,
-                        EntrepotReglesDeGestion.LIBELLE_ERREUR_EMAIL_NON_VALIDE, listeErreurs);
+                        EntrepotReglesDeGestion.LIBELLE_ERREUR_EMAIL_EDITEUR_NON_VALIDE, listeErreurs);
         this.verifierQueDateCreationFicheServiceAnterieurOuEgaleDateDuJour(ficheService.getDateDeCreation(),
                         EntrepotReglesDeGestion.CODE_ERREUR_DATE_DE_CREATION_NON_VALIDE,
                         EntrepotReglesDeGestion.LIBELLE_ERREUR_DATE_DE_CREATION_NON_VALIDE, listeErreurs);
@@ -40,11 +40,9 @@ public class ServiceValidationFicheService {
         if (emailTeste != null) {
             if (Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", emailTeste) == false) {
                 listeErreurs.add(new Erreur(codeErreur, libelleErreur));
-                // formulaireEnSaisie.recordError(libelleErreur);
             }
         } else {
             listeErreurs.add(new Erreur(codeErreur, libelleErreur));
-            // formulaireEnSaisie.recordError(libelleErreur);
         }
     }
     
@@ -53,7 +51,6 @@ public class ServiceValidationFicheService {
         Date aujourdhui = new Date();
         if (dateTeste.after(aujourdhui)) {
             listeErreurs.add(new Erreur(codeErreur, libelleErreur));
-            // formulaireEnSaisie.recordError(libelleErreur);
         }
     }
 

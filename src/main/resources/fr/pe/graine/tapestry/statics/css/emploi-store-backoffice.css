@@ -1,0 +1,306 @@
+@charset "UTF-8";
+.lastmodified-15-November-2016-09h50 {
+  content: "";
+}
+
+/*transverse*/
+/*candidat*/
+/*entreprise*/
+/*particulier*/
+/* news */
+/*autres*/
+/*guso*/
+/*bouton*/
+/*link*/
+/*font*/
+/*social*/
+/*accessibilité*/
+/* ============================================ VARIABLES ES BO ====================================================== */
+.btn-primary:hover,
+.btn-primary:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.open > .dropdown-toggle.btn-primary:hover {
+  color: #ffffff;
+  background-color: #5d3168;
+  border-color: #5d3168;
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #572e61;
+  border-color: #572e61;
+}
+
+.btn-primary:disabled:hover {
+  color: #ffffff;
+  background-color: #7c418b;
+  border-color: #7c418b;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #7c418b;
+  border-color: #7c418b;
+}
+
+a,
+button {
+  color: #7c418b;
+}
+a:hover, a:active,
+button:hover,
+button:active {
+  color: #5D1D6E;
+  /* text-decoration:none; */
+}
+a:focus,
+button:focus {
+  color: #5D1D6E;
+}
+
+.text-primary {
+  color: #7c418b !important;
+}
+
+/* ============================================ COMMUN AUX PAGES ====================================================== */
+body {
+  background: #ebebeb url(../../emploi-store/css/gfx/bg-noise-creampaper.png);
+}
+
+button.es-bo, a.es-bo {
+  border-radius: 5px;
+  border-bottom-width: 3px;
+  border-bottom-color: #5D1D6E;
+  margin-right: 15px;
+}
+button.btn-xs, a.btn-xs {
+  padding: 2px 16px;
+}
+
+button.btn-secondary {
+  background-color: #e6e7e8;
+  border-bottom-color: #bcbec0;
+  color: #7c418b;
+}
+button.btn-secondary:hover {
+  background-color: #bcbec0;
+  color: #5D1D6E;
+}
+
+.breadcrumb {
+  margin-top: -40px;
+  margin-bottom: 30px;
+}
+
+.main {
+  background-color: transparent;
+}
+
+.content {
+  background-color: white;
+  padding: 60px 50px;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #7c418b;
+}
+
+header {
+  padding: 8px;
+}
+header img {
+  width: 210px;
+}
+
+.btn + .btn {
+  margin-left: 0;
+}
+
+.btn-primary:active:focus {
+  background-color: #7c418b;
+}
+
+/* ============================================ PAGE D'AUTHENTIFICATION ====================================================== */
+.connexion .small-container {
+  width: 390px;
+  background: white;
+  padding: 55px 45px;
+  box-shadow: 0px 0px 8px #d1d3d4;
+  border-radius: 6px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.connexion img {
+  width: 250px;
+}
+.connexion hr {
+  margin-bottom: 40px;
+}
+.connexion button {
+  margin-top: 40px;
+}
+
+/* ============================================ PAGE DE CHOIX ====================================================== */
+.choix .row {
+  margin-bottom: 20px;
+}
+.choix a {
+  margin-top: 15px;
+  margin-left: 0 !important;
+}
+.choix h1 {
+  padding: 25px 0;
+}
+.choix hr {
+  margin-top: 0;
+}
+
+/* ============================================ PAGE DE LISTE DE FICHES ====================================================== */
+.liste-fiches table {
+  margin-top: 25px;
+}
+
+/* ============================================ PAGE FICHE SERVICE ====================================================== */
+.fiche-service .form section {
+  padding: 0px 0px 0px 40px;
+  border-left: 1px solid #e6e7e8;
+}
+.fiche-service .form section > h2 {
+  margin-left: -41px;
+  padding: 30px 0;
+  background-color: white;
+}
+.fiche-service .upload-logo {
+  border: 1px solid #d1d3d4;
+  width: 144px;
+  height: 144px;
+  margin-top: 10px;
+}
+.fiche-service .aside {
+  position: fixed;
+  width: 235px;
+  background-color: #f2f2f2;
+  border: 1px solid #d8dee0;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px -1px rgba(194, 194, 194, 0.35);
+}
+.fiche-service .aside .title {
+  background-color: #e6e6e6;
+  color: #7c418b;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 1px solid #d8dee0;
+}
+.fiche-service .aside .aside-content {
+  padding: 10px;
+}
+.fiche-service .aside .aside-content button {
+  margin-top: 10px;
+}
+.fiche-service .submit-form {
+  margin-top: 40px;
+}
+.fiche-service .picker--focused .picker__day--highlighted, .fiche-service .picker__day--infocus:hover, .fiche-service .picker__day--outfocus:hover {
+  background-color: #c397ce;
+}
+.fiche-service .video-img {
+  margin-bottom: 15px;
+}
+.fiche-service .img-slider button {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+.fiche-service .img-slider img {
+  width: 100%;
+}
+.fiche-service ul {
+  list-style: none;
+  margin: 5px 0 10px 0;
+  padding: 0;
+}
+.fiche-service .interet .col-md-4 {
+  margin-top: 10px;
+}
+.fiche-service .block-img {
+  max-height: 150px;
+  overflow: hidden;
+}
+.fiche-service .text-block .error-block {
+  margin-top: -17px;
+}
+
+footer {
+  text-align: center;
+  background-color: #323e4a;
+  padding: 20px 0;
+  color: white;
+}
+
+/* ============================================================================== */
+/* ========================== 		1200px				========================= */
+/* ============================================================================== */
+/* ============================================================================== */
+/* ========================== 		1024px				========================= */
+/* ============================================================================== */
+@media only screen and (max-width: 1024px) {
+  .fiche-service .aside {
+    margin-top: 40px;
+  }
+}
+/* ============================================================================== */
+/* ==========================       992px               ========================= */
+/* ============================================================================== */
+@media only screen and (min-width: 992px) {
+  .fiche-service #secteurActivite2 {
+    margin-top: 23px;
+  }
+  .fiche-service .mots-cle {
+    margin-top: 23px;
+  }
+  .fiche-service .mmContact {
+    margin-top: 30px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+  .fiche-service .aside {
+    width: 190px;
+  }
+}
+/* ============================================================================== */
+/* ==========================       768px               ========================= */
+/* ============================================================================== */
+/* ============================================================================== */
+/* ==========================       640px               ========================= */
+/* ============================================================================== */
+@media only screen and (max-width: 640px) {
+  .text-block .error-block {
+    margin-top: 0px !important;
+  }
+}
+/* ============================================================================== */
+/* ==========================       480px               ========================= */
+/* ============================================================================== */
+@media only screen and (max-width: 480px) {
+  .connexion .small-container {
+    width: 100%;
+    padding: 25% 25px;
+    height: 100%;
+  }
+
+  .content {
+    padding: 40px 20px;
+  }
+
+  .submit-form button {
+    margin-top: 10px;
+  }
+}
+/* ============================================================================== */
+/* ==========================       320px               ========================= */
+/* ============================================================================== */

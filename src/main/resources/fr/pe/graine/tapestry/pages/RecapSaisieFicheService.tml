@@ -35,16 +35,20 @@
 					<p class="form-control-static">${contexteSaisieFicheService.ficheServiceValidee.nomService}</p> 
 				</div>
 				<div class="form-group">
-					<label for="typeService">Type service : </label>
-					<p class="form-control-static">${contexteSaisieFicheService.ficheServiceValidee.typeDeService}</p>
+					<label for="typeService">Type de service : </label>
+					<p class="form-control-static">${contexteSaisieFicheService.ficheServiceValidee.typeDeService.libelle}</p>
 				</div>
 				<div class="form-group">
-					<label for="nomEditeur">Nom éditeur : </label>
+					<label for="nomEditeur">Nom de l'éditeur : </label>
 					<p class="form-control-static">${contexteSaisieFicheService.ficheServiceValidee.nomEditeur}</p>
 				</div>
 		        <div class="form-group">
-					<label for="mailEditeur">Mail éditeur : </label>
+					<label for="mailEditeur">Mail de l'éditeur : </label>
 					<p class="form-control-static">${contexteSaisieFicheService.ficheServiceValidee.mailEditeur}</p>
+				</div>
+                <div class="form-group">
+					<label for="mailContactTechnique">Mail du contact technique : </label>
+					<p class="form-control-static">${contexteSaisieFicheService.ficheServiceValidee.mailContactTechnique}</p>					 
 				</div>
 				<hr />
 				<div class="form-group">

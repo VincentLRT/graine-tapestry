@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.tapestry5.corelib.components.Form;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +20,6 @@ public class ServiceValidationFicheServiceTest {
     private static final String NOM_EDITEUR = "editeur1";
     private static final String TYPE_SERVICE = "Type de service 1";
     private static final String EMAIL = "laroute.vincent@gmail.com";
-    private static final Form formulaireEnSaisie = new Form();
 
     private FicheService ficheService;
     private ServiceValidationFicheService serviceTeste;
@@ -62,7 +60,8 @@ public class ServiceValidationFicheServiceTest {
     
     @Test
     public void verifierFicheServiceKoSiTypeDeServiceAbsent() {
-        this.ficheService.setTypeDeService("");
+        // TODO enum
+        // this.ficheService.setTypeDeService("");
         
         List<Erreur> listeErreurs = this.serviceTeste.valider(this.ficheService);
 
@@ -77,7 +76,7 @@ public class ServiceValidationFicheServiceTest {
         List<Erreur> listeErreurs = this.serviceTeste.valider(this.ficheService);
 
         this.verifierLesAffirmations(listeErreurs, EntrepotReglesDeGestion.CODE_ERREUR_EMAIL_NON_VALIDE,
-                        EntrepotReglesDeGestion.LIBELLE_ERREUR_EMAIL_NON_VALIDE);
+                        EntrepotReglesDeGestion.LIBELLE_ERREUR_EMAIL_EDITEUR_NON_VALIDE);
     }
     
     @Test
@@ -102,7 +101,8 @@ public class ServiceValidationFicheServiceTest {
         FicheService ficheService = new FicheService();
         ficheService.setNomService(NOM_SERVICE);
         ficheService.setNomEditeur(NOM_EDITEUR);
-        ficheService.setTypeDeService(TYPE_SERVICE);
+        // TODO enum
+        // ficheService.setTypeDeService(TYPE_SERVICE);
         ficheService.setMailEditeur(EMAIL);
         ficheService.setDateDeCreation(new Date());
 

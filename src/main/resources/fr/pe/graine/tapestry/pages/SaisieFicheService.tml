@@ -20,7 +20,7 @@
 	            <a class="navbar-brand" href="http://localhost:8080/graine-tapestry/saisieficheservice#">Backoffice de saisie des fiches service</a></div>
 	        <div id="bs-example-navbar-collapse-9" class="collapse navbar-collapse">
 	            <ul class="nav navbar-nav">
-	                <li class="active"><a href="http://localhost:8080/graine-tapestry/saisieficheservice#">Saisir une fiche service</a></li>
+	                <li class="active"><a href="http://localhost:8080/graine-tapestry/saisieficheservice#">Saisir une nouvelle fiche service</a></li>
 	            </ul>
 	        </div>
 	    </div>
@@ -36,25 +36,35 @@
 					<t:textfield class="form-control" t:id="nomService" t:value="ficheServiceBrouillon.nomService" placeholder="Nom du service"/> 
 				</div>
 				<div class="form-group">
-					<label for="typeService">Type service : </label>
-					<t:textfield class="form-control" t:id="typeService" t:value="ficheServiceBrouillon.typeDeService" placeholder="Type du service"/> 
+					<label for="typeDeService">Type de service : </label><br/>
+					<t:select t:id="typeService" t:model="typeServiceModel" blankLabel="-- Choisissez un type --" blankOption="ALWAYS"
+					t:value="ficheServiceBrouillon.typeDeService" t:encoder="typeServiceEncoder" />
 				</div>
 				<div class="form-group">
-					<label for="nomEditeur">Nom éditeur : </label>
+					<label for="nomEditeur">Nom de l'éditeur : </label>
 					<t:textfield class="form-control" t:id="nomEditeur" t:value="ficheServiceBrouillon.nomEditeur" placeholder="Nom de l'éditeur"/>
 				</div>
 		        <div class="form-group">
-					<label for="mailEditeur">Mail éditeur : </label>
-					<t:textfield class="form-control" t:id="mailEditeur" t:value="ficheServiceBrouillon.mailEditeur" placeholder="Mail de l'éditeur"/> 
+					<label for="mailEditeur">Mail de l'éditeur : </label>
+					<t:textfield class="form-control" t:id="mailEditeur" t:value="ficheServiceBrouillon.mailEditeur" placeholder="Mail de l'éditeur"/>					 
 				</div>
-				<hr />
+				<t:checkbox t:id="contactDifferent" t:mixins="triggerfragment" fragment="fragmentContactDifferent"/>
+                <t:label for="contactDifferent">&nbsp;Le mail editeur est différent du contact technique</t:label>
+
+                <t:formfragment t:id="fragmentContactDifferent" visible="contactDifferent">
+                	<div class="form-group">
+					<label for="mailContactTechnique">Mail du contact technique : </label>
+					<t:textfield class="form-control" t:id="mailContactTechnique" t:value="ficheServiceBrouillon.mailContactTechnique" placeholder="Mail du contact technique"/>					 
+				</div>
+				</t:formfragment>
 				<div class="form-group">
 				    <label for="dateCreation">Date de création : </label>
 				    <div>
 				        <p class="form-control-static">${dateDuJour}</p>
 				    </div>
 				</div>	
-  				<t:submit class="btn btn-primary" t:id="validerFicheService" type="submit" value="valider" />
+				<hr/>
+  				<t:submit class="btn btn-primary" t:id="validerFicheService" type="submit" value="Valider" />
   			</t:form>
 		</div>
 	</div>
