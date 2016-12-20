@@ -28,69 +28,69 @@ import fr.pe.graine.tapestry.entrepot.EntrepotReglesDeGestion;
 import fr.pe.graine.tapestry.services.ServiceValidationFicheService;
 
 public class SaisieFicheService {
-    
+
     private static final String DATE_PATTERN = "dd/MM/yyyy";
     private SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
-    
+
     @Inject
     @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/images/logo-emploi-store.png")
     @Property
     private Asset logoEmploiStore;
-    
+
     @Inject
     @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/css/bootstrap.css")
     @Property
     private Asset bootstrap;
-    
+
     @Inject
     @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/css/animate.css")
     @Property
     private Asset animate;
-    
+
     @InjectComponent
     private Form formulaireFicheServiceEnSaisie;
-    
+
     @Inject
     private ServiceValidationFicheService validerFicheService;
-    
+
     @Persist
     private FicheService ficheServiceBrouillon;
-    
+
     @SessionState
     private ContexteSaisieFicheDeService contexteSaisieFicheService;
-    
+
     @InjectComponent("nomService")
     private TextField nomService;
-    
+
     @Property
     private SelectModel typeServiceModel;
-    
+
     @InjectComponent("typeService")
     private Select typeService;
-    
+
     @Inject
     SelectModelFactory selectModelFactory;
-    
+
     @InjectComponent("mailEditeur")
     private TextField mailEditeur;
-    
+
     @InjectComponent("mailContactTechnique")
     private TextField mailContactTechnique;
-    
+
     @InjectComponent("contactDifferent")
     private Checkbox contactDifferentCheckBox;
-    
+
     @Persist
     @Property
     private boolean contactDifferent;
-    
+
     @InjectComponent("nomEditeur")
     private TextField nomEditeur;
-    
+
     public TypeServiceEncoder getTypeServiceEncoder() {
         return new TypeServiceEncoder();
     }
-    
+
     public void onActivate() {
         if (this.ficheServiceBrouillon == null) {
             this.ficheServiceBrouillon = new FicheService();
@@ -99,19 +99,19 @@ public class SaisieFicheService {
             this.typeServiceModel = this.selectModelFactory.create(Arrays.asList(FicheService.TypeServiceEnum.values()), "libelle");
         }
     }
-    
+
     public FicheService getFicheServiceBrouillon() {
         return this.ficheServiceBrouillon;
     }
-    
+
     public void setFicheServiceBrouillon(FicheService ficheServiceBrouillon) {
         this.ficheServiceBrouillon = ficheServiceBrouillon;
     }
-    
+
     public String getDateDuJour() {
         return this.sdf.format(Calendar.getInstance().getTime());
     }
-    
+
     public void onValidateFromFormulaireFicheServiceEnSaisie() {
         this.ficheServiceBrouillon.setDateDeCreation(Calendar.getInstance().getTime());
         if (StringUtils.isBlank(this.ficheServiceBrouillon.getNomService())) {
@@ -144,17 +144,22 @@ public class SaisieFicheService {
             }
         }
     }
-    
+
     public Object onSuccessFromFormulaireFicheServiceEnSaisie() {
         if (!this.contactDifferent) {
             this.ficheServiceBrouillon.setMailContactTechnique(this.ficheServiceBrouillon.getMailEditeur());
         }
         this.contexteSaisieFicheService.setFicheServiceValidee(this.ficheServiceBrouillon);
+
+        // Appeler un service Tap de persistence --> fiche service dans Mongo
+        // ICI
+        // Fin appel
+
         return RecapSaisieFicheService.class;
     }
-    
+
     public Object onFailureFromFormulaireFicheServiceEnSaisie() {
         return this;
     }
-    
+
 }
