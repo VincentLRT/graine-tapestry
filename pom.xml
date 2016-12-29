@@ -68,6 +68,25 @@
 		    <version>${quartz.version}</version>
 		</dependency>
 		
+		<!-- Dépendances MongoDb -->
+		<dependency>
+			<groupId>org.mongodb.morphia</groupId>
+			<artifactId>morphia</artifactId>
+			<version>0.111</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.mongodb</groupId>
+					<artifactId>mongo-java-driver</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.0.0</version>
+		</dependency>		
+		
 		<!-- Validation des Beans -->
 		<dependency>
 			<groupId>org.glassfish.jersey.ext</groupId>

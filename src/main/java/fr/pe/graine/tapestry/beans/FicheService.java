@@ -4,17 +4,21 @@ import java.util.Arrays;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
+@Entity("ficheService")
 public class FicheService {
-    
+
+    @Id
+    private String idFicheService;
     private String nomService;
     private String nomEditeur;
     private TypeServiceEnum typeDeService;
     private String mailEditeur;
     private String mailContactTechnique;
     private Date dateDeCreation;
-    private String id;
-
+    
     public String getNomService() {
         return this.nomService;
     }
@@ -85,12 +89,12 @@ public class FicheService {
         }
     }
     
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public String getIdFicheService() {
+        return this.idFicheService;
     }
     
+    public void setIdFicheService(String idFicheService) {
+        this.idFicheService = idFicheService;
+    }
+
 }

@@ -10,12 +10,11 @@ import org.junit.Test;
 
 import fr.pe.graine.tapestry.beans.FicheService;
 import fr.pe.graine.tapestry.beans.FicheService.TypeServiceEnum;
-import fr.pe.graine.tapestry.services.impl.ServiceAccesFicheServiceImplBouchon;
 
 public class ServiceAccesFicheServiceImplBouchonTest {
     
     private static final String NOM_SERVICE = "Service1";
-    private static final String NOM_EDITEUR = "editeur1";
+    private static final String NOM_EDITEUR = "Editeur1";
     private static final String EMAIL = "laroute.vincent@gmail.com";
     private static final TypeServiceEnum TYPE_SERVICE = TypeServiceEnum.ELEARNING;
 
@@ -33,7 +32,7 @@ public class ServiceAccesFicheServiceImplBouchonTest {
         FicheService ficheService = this.serviceAccesFicheServiceImplBouchonTeste.ecrireFicheService(this.ficheService);
         
         assertThat(this.serviceAccesFicheServiceImplBouchonTeste.getListeFicheService().size()).isEqualTo(1);
-        assertNotNull(ficheService.getId());
+        assertNotNull(ficheService.getIdFicheService());
         assertThat(ficheService.getNomService()).isEqualTo(this.ficheService.getNomService());
         assertThat(ficheService.getNomEditeur()).isEqualTo(this.ficheService.getNomEditeur());
         assertThat(ficheService.getMailEditeur()).isEqualTo(this.ficheService.getMailEditeur());
@@ -42,14 +41,13 @@ public class ServiceAccesFicheServiceImplBouchonTest {
 
     @Test
     public void verifierLectureDansLaListe() {
-        // List<FicheService> listeFichesService = this.serviceAccesFicheServiceImplBouchonTeste.ecrireFicheService(this.ficheService);
-        //
-        // FicheService ficheServiceLue = this.serviceAccesFicheServiceImplBouchonTeste.lectureListeFicheService(listeFichesService);
-        //
-        // assertThat(ficheServiceLue.getNomService()).isEqualTo(this.ficheService.getNomService());
-        // assertThat(ficheServiceLue.getNomEditeur()).isEqualTo(this.ficheService.getNomEditeur());
-        // assertThat(ficheServiceLue.getMailEditeur()).isEqualTo(this.ficheService.getMailEditeur());
-        // assertThat(ficheServiceLue.getDateDeCreation()).isEqualTo(this.ficheService.getDateDeCreation());
+
+        FicheService ficheServiceLue = this.serviceAccesFicheServiceImplBouchonTeste.lireFicheService(this.ficheService.getNomService());
+
+        assertThat(ficheServiceLue.getNomService()).isEqualTo(this.ficheService.getNomService());
+        assertThat(ficheServiceLue.getNomEditeur()).isEqualTo(this.ficheService.getNomEditeur());
+        assertThat(ficheServiceLue.getMailEditeur()).isEqualTo(this.ficheService.getMailEditeur());
+        assertThat(ficheServiceLue.getDateDeCreation()).isEqualTo(this.ficheService.getDateDeCreation());
     }
 
     private FicheService fournirUnFicheDeTest() {

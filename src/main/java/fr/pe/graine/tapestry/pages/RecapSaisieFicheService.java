@@ -9,7 +9,9 @@ import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 import fr.pe.graine.tapestry.beans.ContexteSaisieFicheDeService;
+import fr.pe.graine.tapestry.beans.FicheService;
 import fr.pe.graine.tapestry.entrepot.ConstantesGlobales;
+import fr.pe.graine.tapestry.services.ServiceAccesFicheService;
 
 public class RecapSaisieFicheService {
     
@@ -33,6 +35,14 @@ public class RecapSaisieFicheService {
     
     @SessionState
     private ContexteSaisieFicheDeService contexteSaisieFicheService;
+
+    @Inject
+    private ServiceAccesFicheService serviceAccesFicheService;
+    
+    public void onActivate(String idFicheService) {
+        FicheService ficheServiceRercuperee = this.serviceAccesFicheService.lireFicheService(idFicheService);
+        this.contexteSaisieFicheService.setFicheServiceValidee(ficheServiceRercuperee);
+    }
     
     public ContexteSaisieFicheDeService getContexteSaisieFicheService() {
         return this.contexteSaisieFicheService;

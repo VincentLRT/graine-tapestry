@@ -25,7 +25,9 @@ import fr.pe.graine.tapestry.beans.FicheService;
 import fr.pe.graine.tapestry.encoder.TypeServiceEncoder;
 import fr.pe.graine.tapestry.entrepot.ConstantesGlobales;
 import fr.pe.graine.tapestry.entrepot.EntrepotReglesDeGestion;
+import fr.pe.graine.tapestry.services.ServiceAccesFicheService;
 import fr.pe.graine.tapestry.services.ServiceValidationFicheService;
+import fr.pe.graine.tapestry.utilitaire.FicheServiceUtils;
 
 public class SaisieFicheService {
 
@@ -59,6 +61,9 @@ public class SaisieFicheService {
     @SessionState
     private ContexteSaisieFicheDeService contexteSaisieFicheService;
 
+    @Inject
+    private ServiceAccesFicheService serviceAccesFicheService;
+
     @InjectComponent("nomService")
     private TextField nomService;
 
@@ -81,7 +86,6 @@ public class SaisieFicheService {
     private Checkbox contactDifferentCheckBox;
 
     @Persist
-    @Property
     private boolean contactDifferent;
 
     @InjectComponent("nomEditeur")
@@ -113,6 +117,7 @@ public class SaisieFicheService {
     }
 
     public void onValidateFromFormulaireFicheServiceEnSaisie() {
+
         this.ficheServiceBrouillon.setDateDeCreation(Calendar.getInstance().getTime());
         if (StringUtils.isBlank(this.ficheServiceBrouillon.getNomService())) {
             this.formulaireFicheServiceEnSaisie.recordError(this.nomService, EntrepotReglesDeGestion.LIBELLE_ERREUR_NOM_SERVICE_ABSENT);
@@ -149,11 +154,11 @@ public class SaisieFicheService {
         if (!this.contactDifferent) {
             this.ficheServiceBrouillon.setMailContactTechnique(this.ficheServiceBrouillon.getMailEditeur());
         }
+        this.ficheServiceBrouillon
+                        .setIdFicheService(FicheServiceUtils.genererUnIdFicheServiceValide(this.ficheServiceBrouillon.getNomService()));
         this.contexteSaisieFicheService.setFicheServiceValidee(this.ficheServiceBrouillon);
 
-        // Appeler un service Tap de persistence --> fiche service dans Mongo
-        // ICI
-        // Fin appel
+        this.serviceAccesFicheService.ecrireFicheService(this.ficheServiceBrouillon);
 
         return RecapSaisieFicheService.class;
     }
@@ -161,5 +166,13 @@ public class SaisieFicheService {
     public Object onFailureFromFormulaireFicheServiceEnSaisie() {
         return this;
     }
-
+    
+    public boolean isContactDifferent() {
+        return this.contactDifferent;
+    }
+    
+    public void setContactDifferent(boolean contactDifferent) {
+        this.contactDifferent = contactDifferent;
+    }
+    
 }
