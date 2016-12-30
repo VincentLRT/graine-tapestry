@@ -16,7 +16,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 
 import com.mongodb.DBCollection;
@@ -48,13 +47,10 @@ public class ServiceAccesFicheServiceImplMongoTest {
     @Test
     public void verifierEcritureDansMongo() {
         
-        Key<FicheService> value = mock(Key.class);
-        when(this.datastore.save(this.ficheService)).thenReturn(value);
-        String idAttendu = "id";
-        when(value.getId()).thenReturn(idAttendu);
         FicheService ficheService = this.serviceAccesFicheServiceImplMongoTeste.ecrireFicheService(this.ficheService);
         
-        assertEquals(idAttendu, ficheService.getIdFicheService());
+        verify(this.datastore).save(this.ficheService);
+        assertEquals("Service1", ficheService.getIdFicheService());
         assertEquals(this.ficheService.getNomService(), ficheService.getNomService());
         assertEquals(this.ficheService.getNomEditeur(), ficheService.getNomEditeur());
         assertEquals(this.ficheService.getTypeDeService(), ficheService.getTypeDeService());

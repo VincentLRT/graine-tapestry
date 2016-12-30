@@ -1,5 +1,7 @@
 package fr.pe.graine.tapestry.pages;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -12,89 +14,87 @@ import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Path;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.corelib.components.Checkbox;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Select;
 import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.PageRenderLinkSource;
 import org.apache.tapestry5.services.SelectModelFactory;
 
-import fr.pe.graine.tapestry.beans.ContexteSaisieFicheDeService;
 import fr.pe.graine.tapestry.beans.FicheService;
 import fr.pe.graine.tapestry.encoder.TypeServiceEncoder;
 import fr.pe.graine.tapestry.entrepot.ConstantesGlobales;
 import fr.pe.graine.tapestry.entrepot.EntrepotReglesDeGestion;
 import fr.pe.graine.tapestry.services.ServiceAccesFicheService;
 import fr.pe.graine.tapestry.services.ServiceValidationFicheService;
-import fr.pe.graine.tapestry.utilitaire.FicheServiceUtils;
 
 public class SaisieFicheService {
-
+    
     private static final String DATE_PATTERN = "dd/MM/yyyy";
     private SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
-
+    
     @Inject
     @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/images/logo-emploi-store.png")
     @Property
     private Asset logoEmploiStore;
-
+    
     @Inject
     @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/css/bootstrap.css")
     @Property
     private Asset bootstrap;
-
+    
     @Inject
     @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/css/animate.css")
     @Property
     private Asset animate;
-
+    
     @InjectComponent
     private Form formulaireFicheServiceEnSaisie;
-
+    
     @Inject
     private ServiceValidationFicheService validerFicheService;
-
+    
     @Persist
     private FicheService ficheServiceBrouillon;
-
-    @SessionState
-    private ContexteSaisieFicheDeService contexteSaisieFicheService;
-
+    
     @Inject
     private ServiceAccesFicheService serviceAccesFicheService;
-
+    
     @InjectComponent("nomService")
     private TextField nomService;
-
+    
     @Property
     private SelectModel typeServiceModel;
-
+    
     @InjectComponent("typeService")
     private Select typeService;
-
+    
     @Inject
     SelectModelFactory selectModelFactory;
-
+    
     @InjectComponent("mailEditeur")
     private TextField mailEditeur;
-
+    
     @InjectComponent("mailContactTechnique")
     private TextField mailContactTechnique;
-
+    
     @InjectComponent("contactDifferent")
     private Checkbox contactDifferentCheckBox;
-
+    
     @Persist
     private boolean contactDifferent;
-
+    
     @InjectComponent("nomEditeur")
     private TextField nomEditeur;
 
+    @Inject
+    private PageRenderLinkSource linkSource;
+    
     public TypeServiceEncoder getTypeServiceEncoder() {
         return new TypeServiceEncoder();
     }
-
+    
     public void onActivate() {
         if (this.ficheServiceBrouillon == null) {
             this.ficheServiceBrouillon = new FicheService();
@@ -103,21 +103,21 @@ public class SaisieFicheService {
             this.typeServiceModel = this.selectModelFactory.create(Arrays.asList(FicheService.TypeServiceEnum.values()), "libelle");
         }
     }
-
+    
     public FicheService getFicheServiceBrouillon() {
         return this.ficheServiceBrouillon;
     }
-
+    
     public void setFicheServiceBrouillon(FicheService ficheServiceBrouillon) {
         this.ficheServiceBrouillon = ficheServiceBrouillon;
     }
-
+    
     public String getDateDuJour() {
         return this.sdf.format(Calendar.getInstance().getTime());
     }
-
+    
     public void onValidateFromFormulaireFicheServiceEnSaisie() {
-
+        
         this.ficheServiceBrouillon.setDateDeCreation(Calendar.getInstance().getTime());
         if (StringUtils.isBlank(this.ficheServiceBrouillon.getNomService())) {
             this.formulaireFicheServiceEnSaisie.recordError(this.nomService, EntrepotReglesDeGestion.LIBELLE_ERREUR_NOM_SERVICE_ABSENT);
@@ -149,30 +149,34 @@ public class SaisieFicheService {
             }
         }
     }
-
+    
     public Object onSuccessFromFormulaireFicheServiceEnSaisie() {
         if (!this.contactDifferent) {
             this.ficheServiceBrouillon.setMailContactTechnique(this.ficheServiceBrouillon.getMailEditeur());
         }
-        this.ficheServiceBrouillon
-                        .setIdFicheService(FicheServiceUtils.genererUnIdFicheServiceValide(this.ficheServiceBrouillon.getNomService()));
-        this.contexteSaisieFicheService.setFicheServiceValidee(this.ficheServiceBrouillon);
+        FicheService ficheServiceCreee = this.serviceAccesFicheService.ecrireFicheService(this.ficheServiceBrouillon);
+        Object urlRetour = this;
+        try {
+            urlRetour = new URL(this.linkSource.createPageRenderLinkWithContext(RecapSaisieFicheService.class,
+                            ficheServiceCreee.getIdFicheService()).toAbsoluteURI());
 
-        this.serviceAccesFicheService.ecrireFicheService(this.ficheServiceBrouillon);
-
-        return RecapSaisieFicheService.class;
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return urlRetour;
     }
-
+    
     public Object onFailureFromFormulaireFicheServiceEnSaisie() {
         return this;
     }
-    
+
     public boolean isContactDifferent() {
         return this.contactDifferent;
     }
-    
+
     public void setContactDifferent(boolean contactDifferent) {
         this.contactDifferent = contactDifferent;
     }
-    
+
 }

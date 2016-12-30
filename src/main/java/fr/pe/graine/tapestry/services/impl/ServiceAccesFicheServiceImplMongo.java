@@ -1,7 +1,6 @@
 package fr.pe.graine.tapestry.services.impl;
 
 import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Key;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
 
@@ -9,6 +8,7 @@ import com.mongodb.MongoClient;
 
 import fr.pe.graine.tapestry.beans.FicheService;
 import fr.pe.graine.tapestry.services.ServiceAccesFicheService;
+import fr.pe.graine.tapestry.utilitaire.FicheServiceUtils;
 
 public class ServiceAccesFicheServiceImplMongo implements ServiceAccesFicheService {
 
@@ -24,11 +24,12 @@ public class ServiceAccesFicheServiceImplMongo implements ServiceAccesFicheServi
     }
     
     public FicheService ecrireFicheService(FicheService ficheService) {
+        
         if (ficheService == null) {
             return ficheService;
         } else {
-            Key<FicheService> key = this.datastore.save(ficheService);
-            ficheService.setIdFicheService(key.getId().toString());
+            ficheService.setIdFicheService(FicheServiceUtils.genererUnIdFicheServiceValide(ficheService.getNomService()));
+            this.datastore.save(ficheService);
             return ficheService;
         }
 
