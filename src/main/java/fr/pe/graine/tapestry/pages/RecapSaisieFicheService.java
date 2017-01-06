@@ -1,5 +1,7 @@
 package fr.pe.graine.tapestry.pages;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 
 import org.apache.tapestry5.Asset;
@@ -7,10 +9,12 @@ import org.apache.tapestry5.annotations.Path;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.PageRenderLinkSource;
 
 import fr.pe.graine.tapestry.beans.ContexteSaisieFicheDeService;
 import fr.pe.graine.tapestry.beans.FicheService;
 import fr.pe.graine.tapestry.entrepot.ConstantesGlobales;
+import fr.pe.graine.tapestry.entrepot.EntrepotReglesDeGestion;
 import fr.pe.graine.tapestry.services.ServiceAccesFicheService;
 
 public class RecapSaisieFicheService {
@@ -38,10 +42,27 @@ public class RecapSaisieFicheService {
     
     @Inject
     private ServiceAccesFicheService serviceAccesFicheService;
+    
+    @Inject
+    private PageRenderLinkSource linkSource;
 
-    public void onActivate(String idFicheService) {
-        FicheService ficheServiceRercuperee = this.serviceAccesFicheService.lireFicheService(idFicheService);
-        this.contexteSaisieFicheService.setFicheServiceValidee(ficheServiceRercuperee);
+    public Object onActivate(String idFicheService) {
+        FicheService ficheServiceRecuperee = this.serviceAccesFicheService.lireFicheService(idFicheService);
+        if (ficheServiceRecuperee == null) {
+            Object urlRetour = this;
+            try {
+                urlRetour = new URL(this.linkSource.createPageRenderLinkWithContext(PageDErreurs.class,
+                                EntrepotReglesDeGestion.CODE_ERREUR_FICHE_SERVICE_INEXISTANTE).toAbsoluteURI());
+                return urlRetour;
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else {
+            this.contexteSaisieFicheService.setFicheServiceValidee(ficheServiceRecuperee);
+            return null;
+        }
+        return null;
     }
 
     public ContexteSaisieFicheDeService getContexteSaisieFicheService() {

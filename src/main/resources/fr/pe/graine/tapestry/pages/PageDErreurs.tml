@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+	<title>Interface de saisie d'une fiche service.</title>
+	<link href="${bootstrap}" rel="stylesheet" />
+    <link href="${animate}" rel="stylesheet" />
+</head>
+
+<body class="pattern-portofolio bd">
+
+<div class="container">
+	<div class="animated bounceInDown">
+		<p><img src="${logoEmploiStore}"></img></p>	
+	</div>
+	
+	<nav class="navbar navbar-inverse animated fadeIn">
+	    <div class="container-fluid">
+	        <div class="navbar-header">
+	            <a class="navbar-brand" href="http://localhost:8080/graine-tapestry/saisieficheservice#">Backoffice de saisie des fiches service</a></div>
+	        <div id="bs-example-navbar-collapse-9" class="collapse navbar-collapse">
+	            <ul class="nav navbar-nav">
+	                <li class="active"><a href="http://localhost:8080/graine-tapestry/saisieficheservice#">Saisir une fiche service</a></li>
+	            </ul>
+	        </div>
+	    </div>
+	</nav>
+	
+	<div class="panel panel-default animated bounceInUp">
+		<div class="panel-heading">Erreur</div>
+		<div class="panel-body">
+ 		    <t:form	t:id="affichageDeLErreur">      
+				<div class="form-group">
+					<label for="erreur">Erreur dans la demande !</label>
+					<p class="form-control-static">${messageDErreur}</p> 
+				</div>
+				
+  			</t:form>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
