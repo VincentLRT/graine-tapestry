@@ -25,6 +25,11 @@ public class PageDErreurs {
     @Property
     private Asset animate;
     
+    @Inject
+    @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/css/graine-tapestry.css")
+    @Property
+    private Asset graineTapestryCss;
+    
     private String messageDErreur;
     
     @Inject

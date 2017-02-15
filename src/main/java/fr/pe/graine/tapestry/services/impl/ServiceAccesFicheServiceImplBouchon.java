@@ -8,23 +8,23 @@ import fr.pe.graine.tapestry.beans.FicheService;
 import fr.pe.graine.tapestry.services.ServiceAccesFicheService;
 
 public class ServiceAccesFicheServiceImplBouchon implements ServiceAccesFicheService {
-
+    
     private List<FicheService> listeFicheService;
     private FicheService ficheService;
-    
+
     public ServiceAccesFicheServiceImplBouchon() {
         this.listeFicheService = new ArrayList<FicheService>();
     }
-
+    
     public FicheService ecrireFicheService(FicheService ficheService) {
-
+        
         ficheService.setIdFicheService(this.genererUnIdentifiantFicheService());
-
+        
         this.listeFicheService.add(ficheService);
-
+        
         return ficheService;
     }
-    
+
     public FicheService lireFicheService(String nomService) {
         this.fournirDesFichesServiceAUneListe();
         for (int i = 0; i < this.listeFicheService.size(); i++) {
@@ -36,15 +36,15 @@ public class ServiceAccesFicheServiceImplBouchon implements ServiceAccesFicheSer
         System.out.println("La fiche service demandée n'existe pas !");
         return null;
     }
-    
+
     public String genererUnIdentifiantFicheService() {
         return String.valueOf(Math.random());
     }
-    
+
     public List<FicheService> getListeFicheService() {
         return this.listeFicheService;
     }
-
+    
     public void fournirDesFichesServiceAUneListe() {
         FicheService ficheService1 = new FicheService();
         ficheService1.setNomService("Service1");
@@ -54,7 +54,7 @@ public class ServiceAccesFicheServiceImplBouchon implements ServiceAccesFicheSer
         ficheService1.setMailContactTechnique("laroute.vincent@gmail.com");
         ficheService1.setDateDeCreation(new Date());
         this.listeFicheService.add(ficheService1);
-        
+
         FicheService ficheService2 = new FicheService();
         ficheService2.setNomService("Service2");
         ficheService2.setNomEditeur("Editeur2");
@@ -63,7 +63,7 @@ public class ServiceAccesFicheServiceImplBouchon implements ServiceAccesFicheSer
         ficheService2.setMailContactTechnique("mailcontacttechnique2@mail.fr");
         ficheService2.setDateDeCreation(new Date());
         this.listeFicheService.add(ficheService2);
-        
+
         FicheService ficheService3 = new FicheService();
         ficheService3.setNomService("Service3");
         ficheService3.setNomEditeur("Editeur3");
@@ -73,7 +73,7 @@ public class ServiceAccesFicheServiceImplBouchon implements ServiceAccesFicheSer
         ficheService3.setDateDeCreation(new Date());
         this.listeFicheService.add(ficheService3);
     }
-
+    
     private void affichageFicheServiceDansLaConsole(int i) {
         System.out.println(this.listeFicheService.get(i).getNomService());
         System.out.println(this.listeFicheService.get(i).getNomEditeur());
@@ -81,5 +81,9 @@ public class ServiceAccesFicheServiceImplBouchon implements ServiceAccesFicheSer
         System.out.println(this.listeFicheService.get(i).getMailEditeur());
         System.out.println(this.listeFicheService.get(i).getMailContactTechnique());
         System.out.println(this.listeFicheService.get(i).getDateDeCreation());
+    }
+    
+    public List<FicheService> listerLesFichesServices() {
+        return null;
     }
 }

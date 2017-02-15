@@ -49,6 +49,11 @@ public class SaisieFicheService {
     @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/css/animate.css")
     @Property
     private Asset animate;
+    
+    @Inject
+    @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/css/graine-tapestry.css")
+    @Property
+    private Asset graineTapestryCss;
 
     @InjectComponent
     private Form formulaireFicheServiceEnSaisie;
@@ -121,10 +126,11 @@ public class SaisieFicheService {
         this.ficheServiceBrouillon.setDateDeCreation(Calendar.getInstance().getTime());
         if (StringUtils.isBlank(this.ficheServiceBrouillon.getNomService())) {
             this.formulaireFicheServiceEnSaisie.recordError(this.nomService, EntrepotReglesDeGestion.LIBELLE_ERREUR_NOM_SERVICE_ABSENT);
-        }
-        String idFicheServiceTest = FicheServiceUtils.genererUnIdFicheServiceValide(this.ficheServiceBrouillon.getNomService());
-        if (this.serviceAccesFicheService.lireFicheService(idFicheServiceTest) != null) {
-            this.formulaireFicheServiceEnSaisie.recordError(this.nomService, EntrepotReglesDeGestion.LIBELLE_ERREUR_NOM_SERVICE_EXISTANT);
+        } else {
+            String idFicheServiceTest = FicheServiceUtils.genererUnIdFicheServiceValide(this.ficheServiceBrouillon.getNomService());
+            if (this.serviceAccesFicheService.lireFicheService(idFicheServiceTest) != null) {
+                this.formulaireFicheServiceEnSaisie.recordError(this.nomService, EntrepotReglesDeGestion.LIBELLE_ERREUR_NOM_SERVICE_EXISTANT);
+            }
         }
         if (this.ficheServiceBrouillon.getTypeDeService() == null) {
             this.formulaireFicheServiceEnSaisie.recordError(this.typeService, EntrepotReglesDeGestion.LIBELLE_ERREUR_TYPE_DE_SERVICE_ABSENT);

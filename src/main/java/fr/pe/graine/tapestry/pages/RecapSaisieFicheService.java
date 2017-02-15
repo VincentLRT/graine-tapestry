@@ -18,63 +18,70 @@ import fr.pe.graine.tapestry.entrepot.EntrepotReglesDeGestion;
 import fr.pe.graine.tapestry.services.ServiceAccesFicheService;
 
 public class RecapSaisieFicheService {
-
+    
     private static final String DATE_PATTERN = "dd/MM/yyyy";
     private SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
-    
+
     @Inject
     @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/images/logo-emploi-store.png")
     @Property
     private Asset logoEmploiStore;
-
+    
     @Inject
     @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/css/bootstrap.css")
     @Property
     private Asset bootstrap;
-
+    
     @Inject
     @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/css/animate.css")
     @Property
     private Asset animate;
-
+    
+    @Inject
+    @Path(ConstantesGlobales.ACCES_RESSOURCE_STATIQUE + "/css/graine-tapestry.css")
+    @Property
+    private Asset graineTapestryCss;
+    
     @SessionState
     private ContexteSaisieFicheDeService contexteSaisieFicheService;
-    
+
     @Inject
     private ServiceAccesFicheService serviceAccesFicheService;
-    
+
     @Inject
     private PageRenderLinkSource linkSource;
-
+    
     public Object onActivate(String idFicheService) {
         FicheService ficheServiceRecuperee = this.serviceAccesFicheService.lireFicheService(idFicheService);
+        Object urlRetour = this;
         if (ficheServiceRecuperee == null) {
-            Object urlRetour = this;
-            try {
-                urlRetour = new URL(this.linkSource.createPageRenderLinkWithContext(PageDErreurs.class,
-                                EntrepotReglesDeGestion.CODE_ERREUR_FICHE_SERVICE_INEXISTANTE).toAbsoluteURI());
-                return urlRetour;
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            urlRetour = this.redirectionVersPageDErreurs(urlRetour);
         } else {
             this.contexteSaisieFicheService.setFicheServiceValidee(ficheServiceRecuperee);
-            return null;
         }
-        return null;
+        return urlRetour;
     }
 
+    private Object redirectionVersPageDErreurs(Object urlRetour) {
+        try {
+            urlRetour = new URL(this.linkSource.createPageRenderLinkWithContext(PageDErreurs.class,
+                            EntrepotReglesDeGestion.CODE_ERREUR_FICHE_SERVICE_INEXISTANTE).toAbsoluteURI());
+            return urlRetour;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return urlRetour;
+    }
+    
     public ContexteSaisieFicheDeService getContexteSaisieFicheService() {
         return this.contexteSaisieFicheService;
     }
-
+    
     public void setContexteSaisieFicheService(ContexteSaisieFicheDeService contexteSaisieFicheService) {
         this.contexteSaisieFicheService = contexteSaisieFicheService;
     }
-
+    
     public String getDateDeCreation() {
         return this.sdf.format(this.contexteSaisieFicheService.getFicheServiceValidee().getDateDeCreation().getTime());
     }
-
 }

@@ -1,0 +1,7 @@
+IMG.t-error-icon {
+    margin-left: 1080px;
+    width: 16px;
+    height: 16px;
+    background: url(field-error-marker.gif);
+    margin-top: -56px
+}
