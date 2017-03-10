@@ -9,6 +9,8 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.restlet.resource.ClientResource;
+
 import fr.pe.graine.tapestry.beans.AdresseFluent;
 import fr.pe.graine.tapestry.beans.Employe;
 import fr.pe.graine.tapestry.beans.EmployeFluent;
@@ -21,14 +23,25 @@ public class Main {
 
     private static final String ESPACE = " ";
     
+    // public static void main(String[] args) {
+    // FicheServiceAutoValidee ficheServiceValide = new FicheServiceAutoValidee("Nom service valide", "Nom éditeur valide",
+    // "Type de service valide", "laroute.vincent@gmail.com", fournirUneDate(2001, 10, 20));
+    // verifierValiditeFicheDeServiceAutoValidee(ficheServiceValide);
+    //
+    // FicheServiceAutoValidee ficheServiceNonValide = new FicheServiceAutoValidee("", "Nom éditeur valide", "Type de service valide",
+    // "vincent.laroutearobasegmail.com", fournirUneDate(2017, 10, 20));
+    // verifierValiditeFicheDeServiceAutoValidee(ficheServiceNonValide);
+    //
+    // }
+    
     public static void main(String[] args) {
-        FicheServiceAutoValidee ficheServiceValide = new FicheServiceAutoValidee("Nom service valide", "Nom éditeur valide",
-                        "Type de service valide", "laroute.vincent@gmail.com", fournirUneDate(2001, 10, 20));
-        verifierValiditeFicheDeServiceAutoValidee(ficheServiceValide);
-        
-        FicheServiceAutoValidee ficheServiceNonValide = new FicheServiceAutoValidee("", "Nom éditeur valide", "Type de service valide",
-                        "vincent.laroutearobasegmail.com", fournirUneDate(2017, 10, 20));
-        verifierValiditeFicheDeServiceAutoValidee(ficheServiceNonValide);
+        // TODO Auto-generated method stub
+
+        // Create the client resource
+        ClientResource resource = new ClientResource("http://localhost:8182/graine-restlet/listeDesFichesServices");
+
+        // Write the response entity on the console
+        System.out.println(resource.get());
         
     }
 

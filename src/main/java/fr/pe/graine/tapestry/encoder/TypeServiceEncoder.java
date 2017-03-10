@@ -2,16 +2,16 @@ package fr.pe.graine.tapestry.encoder;
 
 import org.apache.tapestry5.ValueEncoder;
 
-import fr.pe.graine.tapestry.beans.FicheService;
+import fr.pe.graine.tapestry.enumeration.TypeServiceEnum;
 
-public class TypeServiceEncoder implements ValueEncoder<FicheService.TypeServiceEnum> {
-
-    public String toClient(FicheService.TypeServiceEnum value) {
+public class TypeServiceEncoder implements ValueEncoder<TypeServiceEnum> {
+    
+    public String toClient(TypeServiceEnum value) {
         return value.getLibelle();
     }
-
-    public FicheService.TypeServiceEnum toValue(String clientValue) {
-        return FicheService.TypeServiceEnum.getTypeService(clientValue);
+    
+    public TypeServiceEnum toValue(String clientValue) {
+        return TypeServiceEnum.getTypeService(clientValue);
     }
-
+    
 }

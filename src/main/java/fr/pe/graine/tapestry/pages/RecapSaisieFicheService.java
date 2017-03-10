@@ -16,6 +16,7 @@ import fr.pe.graine.tapestry.beans.FicheService;
 import fr.pe.graine.tapestry.entrepot.ConstantesGlobales;
 import fr.pe.graine.tapestry.entrepot.EntrepotReglesDeGestion;
 import fr.pe.graine.tapestry.services.ServiceAccesFicheService;
+import fr.pe.graine.tapestry.services.ServiceAppelApiRest;
 
 public class RecapSaisieFicheService {
     
@@ -51,8 +52,12 @@ public class RecapSaisieFicheService {
     @Inject
     private PageRenderLinkSource linkSource;
     
+    @Inject
+    private ServiceAppelApiRest serviceAppelApiRest;
+    
     public Object onActivate(String idFicheService) {
-        FicheService ficheServiceRecuperee = this.serviceAccesFicheService.lireFicheService(idFicheService);
+        // FicheService ficheServiceRecuperee = this.serviceAccesFicheService.lireFicheService(idFicheService);
+        FicheService ficheServiceRecuperee = this.serviceAppelApiRest.appelRessourceUneFicheService(idFicheService);
         Object urlRetour = this;
         if (ficheServiceRecuperee == null) {
             urlRetour = this.redirectionVersPageDErreurs(urlRetour);

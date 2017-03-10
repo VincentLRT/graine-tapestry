@@ -22,10 +22,22 @@
 	</properties>
 
 	<dependencies>
+	
+		
+		<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>2.6.3</version>
+	</dependency>
 		<dependency>
 			<groupId>fr.pe.mc.commun.tapestry</groupId>
 			<artifactId>tapestry-base</artifactId>
 			<version>${tapestry.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.4</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -86,6 +98,29 @@
 			<artifactId>mongo-java-driver</artifactId>
 			<version>3.0.0</version>
 		</dependency>		
+
+		<!-- https://mvnrepository.com/artifact/org.restlet.jee/org.restlet.ext.freemarker -->
+		<dependency>
+		    <groupId>org.restlet.jee</groupId>
+		    <artifactId>org.restlet.ext.freemarker</artifactId>
+		    <version>2.0.6</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.restlet.jee/org.restlet.ext.rome -->
+		<dependency>
+		    <groupId>org.restlet.jee</groupId>
+		    <artifactId>org.restlet.ext.rome</artifactId>
+		    <version>2.0.6</version>
+		</dependency>
+<!-- https://mvnrepository.com/artifact/org.restlet.jee/org.restlet.ext.velocity -->
+<dependency>
+    <groupId>org.restlet.jee</groupId>
+    <artifactId>org.restlet.ext.velocity</artifactId>
+    <version>2.0.6</version>
+</dependency>
+
+
+
 		
 		<!-- Validation des Beans -->
 		<dependency>
